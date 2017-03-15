@@ -29,7 +29,7 @@ fi
 #WELCOME {{{
 welcome(){
   clear
-  echo -e "${Bold}Welcome to the Archlinux U Install script by helmuthdu${White}"
+  echo -e "${Bold}Bienvenidos al Script de Instalacion de ArchlinuxOS 2017${White}"
   print_line
   echo "Requirements:"
   echo "-> Archlinux instalacion"
@@ -392,13 +392,13 @@ choose_aurhelper(){
 #}}}
 #AUTOMODE {{{
 automatic_mode(){
-  print_title "AUTOMODE"
+  print_title "AUTOMODO"
   print_info "Cree una instalación personalizada con todas las opciones preseleccionadas. \ Use esta opción con cuidado."
   print_danger "\tUtilice este modo sólo si ya conoce toda la opción. \n\t No podrá seleccionar nada más tarde."
   read_input_text "Habilite el Modo Automatico"
   if [[ $OPTION == y ]]; then
-    $EDITOR ${AUI_DIR}/lilo.automode
-    source ${AUI_DIR}/lilo.automode
+    $EDITOR ${AUI_DIR}/2-lilo.automode
+    source ${AUI_DIR}/2-lilo.automode
     echo -e "La instalacion comenzara ahora."
     pause_function
     AUTOMATIC_MODE=1
@@ -2717,7 +2717,7 @@ install_fonts(){
 #}}}
 #CLEAN ORPHAN PACKAGES {{{
 clean_orphan_packages(){
-  print_title "CLEAN ORPHAN PACKAGES"
+  print_title "LIMPIAR PAQUETES HUERFANOS"
   pacman -Rsc --noconfirm $(pacman -Qqdt)
   #pacman -Sc --noconfirm
   pacman-optimize
@@ -2812,14 +2812,14 @@ install_extra(){
 #}}}
 #FINISH {{{
 finish(){
-  print_title "WARNING: PACKAGES INSTALLED FROM AUR"
+  print_title "PRECAUCION: PAQUETES INSTALADOS DESDE AUR"
   print_danger "List of packages not officially supported that may kill your cat:"
   pause_function
   AUR_PKG_LIST="${AUI_DIR}/aur_pkg_list.log"
   pacman -Qm | awk '{print $1}' > $AUR_PKG_LIST
   less $AUR_PKG_LIST
-  print_title "INSTALACION COMPLETO"
-  echo -e "Thanks for using the Archlinux Ultimate Install script by helmuthdu\n"
+  print_title "INSTALACION COMPLETA"
+  echo -e "Gracias por utilizar Archlinux Install script\n"
   #REBOOT
   read -p "Reiniciar Sistema [y/N]: " OPTION
   [[ $OPTION == y ]] && reboot
