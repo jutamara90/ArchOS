@@ -1200,7 +1200,7 @@ install_desktop_environment(){
       #MATE {{{
       print_title "MATE - https://wiki.archlinux.org/index.php/Mate"
       print_info "El entorno de escritorio MATE es una bifurcación de GNOME 2 que tiene como objetivo proporcionar un escritorio atractivo e intuitivo para los usuarios de Linux utilizando metáforas tradicionales."
-      package_install "mate mate-extra"
+      package_install "mate-gtk3 mate-extra-gtk3"
       # config xinitrc
       config_xinitrc "mate-session"
       pause_function
