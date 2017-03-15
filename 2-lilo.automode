@@ -39,7 +39,6 @@
   CUSTOMREPO="n"         # Add custom repositories
   FIRMWARE="y"           # Install custom firmwares
   NFS="n"
-  READAHEAD="y"
   SAMBA="y"
   SSH="y"
   TLP="n"                # Laptop Power Manager
