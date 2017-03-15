@@ -11,18 +11,18 @@ You can try it first with a `virtualbox`
 
 ## How to get it
 ### With git
-- Increase cowspace partition: `mount -o remount,size=2G /run/archiso/cowspace`
-- Get list of packages and install git: `pacman -Sy git`
-- get the script: `git clone git://github.com/helmuthdu/aui`
+- Incrementar cowspace partición: `mount -o remount,size=2G /run/archiso/cowspace`
+- Instalar Paquete desde repositorio git: `pacman -Sy git`
+- get the script: `git clone git://github.com/jutamara90/archos`
 
 ### Without git
-- get the script: ` wget https://github.com/helmuthdu/aui/tarball/master -O - | tar xz`
+- get the script: ` wget https://github.com/jutamara90/archos/tarball/master -O - | tar xz`
     - an alternate URL (for less typing) is ` wget http://bit.ly/NoUPC6 -O - | tar xz`
     - super short `wget ow.ly/wnFgh -O aui.zip`
 
 ## How to use
-- FIFO [sistema base]: `cd <dir> && ./fifo`
-- LILO [El resto]: `cd <dir> && ./lilo`
+- FIFO [sistema base]: `cd <dir> && ./1-fifo`
+- LILO [El resto]: `cd <dir> && ./2-lilo`
 
 ## 1-FIFO SCRIPT
 - Configurar Teclado
@@ -68,5 +68,4 @@ You can try it first with a `virtualbox`
 - Instalar Fonts [Liberation, MS-Fonts, Google-webfonts...]
 - Instalar y configurar servidores Web
 - Mucho Mas...
-
-If you like my work, please consider a small Paypal donation at helmuthdu@gmail.com :)
+ :)
