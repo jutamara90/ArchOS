@@ -1121,7 +1121,7 @@ install_desktop_environment(){
       print_title "KDE - https://wiki.archlinux.org/index.php/KDE"
       print_info "KDE Es una comunidad internacional de software libre que produce un conjunto integrado de aplicaciones multiplataforma diseñadas para ejecutarse en sistemas Linux, FreeBSD, Microsoft Windows, Solaris y Mac OS X. Es conocido por su Plasma Desktop, un entorno de escritorio proporcionado como el entorno de trabajo predeterminado en muchas distribuciones de Linux."
       package_install "plasma kf5 sddm"
-      package_install "ark dolphin dolphin-plugins kio-extras kdeconnect quota-tools gwenview kipi-plugins kate kcalc konsole spectacle okular kdeutils-sweeper kwalletmanager"
+      package_install "ark dolphin dolphin-plugins kio-extras kdeconnect quota-tools gwenview kipi-plugins kate kcalc konsole spectacle okular kdeutils-sweeper kwalletmanager kdenetwork-filesharing"
       is_package_installed "cups" && package_install "print-manager"
       [[ $LOCALE != en_US ]] && package_install "kde-l10n-$LOCALE_KDE"
       # config xinitrc
