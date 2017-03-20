@@ -740,7 +740,7 @@ install_cups(){
   if [[ $OPTION == y ]]; then
     package_install "cups cups-filters ghostscript gsfonts"
     package_install "gutenprint foomatic-db foomatic-db-engine foomatic-db-nonfree foomatic-filters foomatic-db-ppds foomatic-db-nonfree-ppds hplip hplip-plugins splix cups-pdf foomatic-db-gutenprint-ppds"
-    package_install "pyqt5-common python-pyqt5 python2-pyqt5 python2-ptpy bluez-cups"
+    package_install "pyqt5-common python-pyqt5 python2-pyqt5 python2-ptpy bluez-cups iscan"
     system_ctl enable org.cups.cupsd.service
     pause_function
   fi
