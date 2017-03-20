@@ -739,7 +739,8 @@ install_cups(){
   read_input_text "Install CUPS (aka Common Unix Printing System)" $CUPS
   if [[ $OPTION == y ]]; then
     package_install "cups cups-filters ghostscript gsfonts"
-    package_install "gutenprint foomatic-db foomatic-db-engine foomatic-db-nonfree foomatic-filters foomatic-db-ppds foomatic-db-nonfree-ppds hplip splix cups-pdf foomatic-db-gutenprint-ppds"
+    package_install "gutenprint foomatic-db foomatic-db-engine foomatic-db-nonfree foomatic-filters foomatic-db-ppds foomatic-db-nonfree-ppds hplip hplip-plugins splix cups-pdf foomatic-db-gutenprint-ppds"
+    package_install "pyqt5-common python-pyqt5 python2-pyqt5 python2-ptpy bluez-cups"
     system_ctl enable org.cups.cupsd.service
     pause_function
   fi
@@ -789,7 +790,7 @@ install_additional_firmwares(){
             aur_package_install "bfa-firmware"
             ;;
           6)
-            package_install "bluez-firmware"
+            package_install "bluez-firmware bluez bluez-utils blueman"
             ;;
           7)
             aur_package_install "broadcom-wl"
@@ -909,7 +910,7 @@ install_desktop_environment(){
             if [[ ${KDE} -eq 1 ]]; then
               package_install "lightdm lightdm-kde-greeter"
             else
-              package_install "lightdm lightdm-gtk-greeter"
+              package_install "lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings"
             fi
             system_ctl enable lightdm
             ;;
@@ -1204,7 +1205,9 @@ install_desktop_environment(){
       #MATE {{{
       print_title "MATE - https://wiki.archlinux.org/index.php/Mate"
       print_info "El entorno de escritorio MATE es una bifurcación de GNOME 2 que tiene como objetivo proporcionar un escritorio atractivo e intuitivo para los usuarios de Linux utilizando metáforas tradicionales."
-      package_install "mate mate-extra"
+      package_install "mate mate-extra "
+      package_install "compiz-manjaro unace cairo-dock mate-applet-dock mate-applet-streamer mate-menu"
+      aur_package_install --noconfirm "mate-tweak-gtk2"
       # config xinitrc
       config_xinitrc "mate-session"
       pause_function
@@ -1680,6 +1683,9 @@ install_system_apps(){
     echo "11) $(menu_item "unified-remote-server" "Unified Remote") $AUR"
     echo "12) $(menu_item "virtualbox")"
     echo "13) $(menu_item "wine")"
+    echo "14) $(menu_item "grub-customizer")"
+    echo "15) $(menu_item "live-usb-install")"
+    echo "16) $(menu_item "plymouth)"
     echo ""
     echo " b) ATRAS"
     echo ""
@@ -1752,6 +1758,15 @@ install_system_apps(){
         13)
           package_install "icoutils wine wine_gecko wine-mono winetricks"
           ;;
+        14)
+          package_install "grub-customizer grub2-theme-archlinux grub2-themes-dharma grub2-theme-arch-suse grub2-theme-vimix-git"
+          ;;
+        15)
+          package_install "live-usb-install"
+          ;;
+        16)
+          package_install "plymouth plymouth-theme-paw-arch"
+          ;;
         "b")
           break
           ;;
@@ -1779,6 +1794,8 @@ install_graphics_apps(){
     echo " 8) $(menu_item "scribus")"
     echo " 9) $(menu_item "shotwell")"
     echo "10) $(menu_item "simple-scan")"
+    echo "11) $(menu_item "xsane")"
+    echo "12) $(menu_item "guvcview")"
     echo ""
     echo " b) ATRAS"
     echo ""
@@ -1815,6 +1832,12 @@ install_graphics_apps(){
           ;;
         10)
           package_install "simple-scan"
+          ;;
+        11)
+          package_install "xsane"
+          ;;
+        12)
+          package_install "guvcview"
           ;;
         "b")
           break
@@ -1983,6 +2006,7 @@ install_internet_apps(){
             print_title "EMAIL|RSS"
             echo " 1) $(menu_item "liferea")"
             echo " 2) $(menu_item "thunderbird")"
+            echo " 3) $(menu_item "evolution")"
             echo ""
             echo " b) ATRAS"
             echo ""
@@ -1997,6 +2021,9 @@ install_internet_apps(){
                   package_install "thunderbird"
                   [[ LOCALE_TB != en_US ]] && package_install "thunderbird-i18n-$LOCALE_TB"
                   ;;
+                3)
+                  package_install "evolution"
+                  ;;  
                 "b")
                   break
                   ;;
@@ -2111,6 +2138,7 @@ install_internet_apps(){
             print_title "DESKTOP SHARE"
             echo " 1) $(menu_item "remmina")"
             echo " 2) $(menu_item "teamviewer") $AUR"
+            echo " 3) $(menu_item "anydesk")"
             echo ""
             echo " b) ATRAS"
             echo ""
@@ -2124,6 +2152,9 @@ install_internet_apps(){
                 2)
                   aur_package_install "teamviewer"
                   ;;
+                3)
+                  package_install "anydesk"
+                  ;;  
                 "b")
                   break
                   ;;
@@ -2778,6 +2809,8 @@ install_extra(){
     print_title "EXTRA"
     echo " 1) Global Menu $AUR"
     echo " 2) $(menu_item "profile-sync-daemon") $AUR"
+    echo " 3) $(menu_item "ipscan")"
+    echo " 4) $(menu_item "wifi-radar")"
     echo " b) ATRAS"
     echo ""
     EXTRA_OPTIONS+=" b"
@@ -2801,6 +2834,12 @@ install_extra(){
           run_as_user "psd"
           run_as_user "$EDITOR /home/${username}/.config/psd/psd.conf"
           run_as_user "systemctl --user enable psd.service"
+          ;;
+        3)
+          package_install "ipscan"
+          ;;
+        4)
+          package_install "wifi-radar"
           ;;
         "b")
           break
